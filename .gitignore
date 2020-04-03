@@ -1,0 +1,8 @@
+.idea
+dotnet.sln.DotSettings.user
+dist
+**/bin
+**/obj
+Yandex.Cloud.Protos/google
+Yandex.Cloud.Protos/yandex
+.vs

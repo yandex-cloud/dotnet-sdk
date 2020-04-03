@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
+        <RootNamespace>Yandex.Cloud</RootNamespace>
+
+        <PackageId>Yandex.Cloud.SDK</PackageId>
+        <Title>Yandex.Cloud SDK</Title>
+        <Summary>Software Development Kit designed to ease interaction with Yandex.Cloud API.</Summary>
+        <Description>See project site for more info.</Description>
+        <PackageVersion>1.0.0</PackageVersion>
+        <Authors>Yandex.Cloud</Authors>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>
+        <PackageReleaseNotes>Yandex Cloud SDK</PackageReleaseNotes>
+        <Copyright>Copyright 2020, YANDEX LLC.</Copyright>
+        <PackageTags>yandex-cloud sdk proto proto3 protobuf grpc</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../tools/tools.csproj" ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="../Yandex.Cloud.Protos/Yandex.Cloud.Protos.csproj"/>
+    </ItemGroup>
+
+    <Target Name="GenerateServices" BeforeTargets="BeforeBuild">
+        <Exec Command="dotnet ../tools/bin/Debug/netcoreapp3.1/tools.dll ./Generated.cs" Condition="'$(MSBuildRuntimeType)' == 'Core'"/>
+        <Exec Command="../tools/bin/Debug/netstandard2.0/tools.exe ./Generated.cs" Condition="'$(MSBuildRuntimeType)' != 'Core'"/>
+    </Target>
+    
+</Project>

@@ -1,0 +1,4 @@
+[submodule "cloudapi"]
+	path = cloudapi
+	url = https://github.com/yandex-cloud/cloudapi
+	

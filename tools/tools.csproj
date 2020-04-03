@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
+        <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Yandex.Cloud.Protos\Yandex.Cloud.Protos.csproj" />
+        <PackageReference Include="Microsoft.Build.Framework" Version="16.5.0" />
+        <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.5.0" />
+        <PackageReference Include="System.CodeDom" Version="4.7.0" />
+    </ItemGroup>
+    
+</Project>
