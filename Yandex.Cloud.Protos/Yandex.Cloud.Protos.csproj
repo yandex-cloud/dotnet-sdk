@@ -8,7 +8,7 @@
         <Title>Yandex.Cloud Protocol Buffer Library</Title>
         <Summary>Auto-generated library from Protocol Buffer descriptors.</Summary>
         <Description>See project site for more info.</Description>
-        <PackageVersion>1.0.0</PackageVersion>
+        <PackageVersion>1.0.1</PackageVersion>
         <Authors>Yandex.Cloud</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>

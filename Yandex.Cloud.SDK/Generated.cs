@@ -19,6 +19,14 @@ namespace Yandex.Cloud.Generated
         {
         }
         
+        public virtual Yandex.Cloud.Vpc.V1.AddressService.AddressServiceClient AddressService
+        {
+            get
+            {
+                return new Yandex.Cloud.Vpc.V1.AddressService.AddressServiceClient(this.GetChannel());
+            }
+        }
+        
         public virtual Yandex.Cloud.Vpc.V1.NetworkService.NetworkServiceClient NetworkService
         {
             get
@@ -399,6 +407,14 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Yandex.Cloud.Mdb.Clickhouse.V1.UserService.UserServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Mdb.Clickhouse.V1.VersionsService.VersionsServiceClient VersionsService
+        {
+            get
+            {
+                return new Yandex.Cloud.Mdb.Clickhouse.V1.VersionsService.VersionsServiceClient(this.GetChannel());
             }
         }
     }
@@ -880,6 +896,14 @@ namespace Yandex.Cloud.Generated
         {
         }
         
+        public virtual Yandex.Cloud.Compute.V1.DiskPlacementGroupService.DiskPlacementGroupServiceClient DiskPlacementGroupService
+        {
+            get
+            {
+                return new Yandex.Cloud.Compute.V1.DiskPlacementGroupService.DiskPlacementGroupServiceClient(this.GetChannel());
+            }
+        }
+        
         public virtual Yandex.Cloud.Compute.V1.DiskService.DiskServiceClient DiskService
         {
             get
@@ -893,6 +917,22 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Yandex.Cloud.Compute.V1.DiskTypeService.DiskTypeServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Compute.V1.HostGroupService.HostGroupServiceClient HostGroupService
+        {
+            get
+            {
+                return new Yandex.Cloud.Compute.V1.HostGroupService.HostGroupServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Compute.V1.HostTypeService.HostTypeServiceClient HostTypeService
+        {
+            get
+            {
+                return new Yandex.Cloud.Compute.V1.HostTypeService.HostTypeServiceClient(this.GetChannel());
             }
         }
         
@@ -941,6 +981,32 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Services_Compute_Instancegroup(this.Sdk());
+            }
+        }
+    }
+    
+    public class Services_Certificatemanager : Yandex.Cloud.ServiceRegistry
+    {
+        
+        public Services_Certificatemanager(Yandex.Cloud.Sdk sdk) : 
+                base(sdk, "unknown")
+        {
+            throw new System.Exception("service Services_Certificatemanager is not supported at this moment");
+        }
+        
+        public virtual Yandex.Cloud.Certificatemanager.V1.CertificateContentService.CertificateContentServiceClient CertificateContentService
+        {
+            get
+            {
+                return new Yandex.Cloud.Certificatemanager.V1.CertificateContentService.CertificateContentServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Certificatemanager.V1.CertificateService.CertificateServiceClient CertificateService
+        {
+            get
+            {
+                return new Yandex.Cloud.Certificatemanager.V1.CertificateService.CertificateServiceClient(this.GetChannel());
             }
         }
     }
@@ -1154,6 +1220,14 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Services_Compute(this.Sdk());
+            }
+        }
+        
+        public virtual Services_Certificatemanager Certificatemanager
+        {
+            get
+            {
+                return new Services_Certificatemanager(this.Sdk());
             }
         }
         
