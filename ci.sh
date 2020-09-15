@@ -3,5 +3,8 @@
 set -e
 
 dotnet clean
-dotnet run -p tools Yandex.Cloud.SDK/Generated.cs
+rm -rf dist
+find . -name '*.nupkg' | xargs -L1 -I{} rm {}
+dotnet build tools/tools.csproj
+dotnet build
 dotnet test
