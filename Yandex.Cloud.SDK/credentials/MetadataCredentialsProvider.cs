@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Yandex.Cloud.Credentials
 {
-    class MetadataCredentialsProvider : ICredentialsProvider
+    public class MetadataCredentialsProvider : ICredentialsProvider
     {
         private readonly HttpClient _client = new HttpClient();
 
