@@ -526,7 +526,7 @@ namespace Yandex.Cloud.Generated
         {
             get
             {
-                return new Yandex.Cloud.Kms.V1.SymmetricCryptoService.SymmetricCryptoServiceClient(this.GetChannel("kms-crypt"));
+                return new Yandex.Cloud.Kms.V1.SymmetricCryptoService.SymmetricCryptoServiceClient(this.GetChannel("kms-crypto"));
             }
         }
         

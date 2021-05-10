@@ -36,7 +36,7 @@ namespace tools
             {
                 "Services_Kms", new EndpointConfig("kms", new Dictionary<string, string>()
                 {
-                    {"SymmetricCryptoService", "kms-crypt"},
+                    {"SymmetricCryptoService", "kms-crypto"},
                 })
             }
         };
