@@ -8,7 +8,7 @@
         <Title>Yandex.Cloud Protocol Buffer Library</Title>
         <Summary>Auto-generated library from Protocol Buffer descriptors.</Summary>
         <Description>See project site for more info.</Description>
-        <PackageVersion>1.0.1</PackageVersion>
+        <PackageVersion>1.0.3</PackageVersion>
         <Authors>Yandex.Cloud</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>
@@ -28,14 +28,14 @@
             <SourceProtosYandex Include="../cloudapi/yandex/**/*.proto" />
             <SourceProtosGoogle Include="../cloudapi/third_party/googleapis/google/**/*.proto" />
         </ItemGroup>
-        
+
         <MakeDir Directories="./yandex"/>
         <MakeDir Directories="./google"/>
-        
+
         <Copy SourceFiles="@(SourceProtosYandex)" DestinationFolder="./yandex/%(RecursiveDir)"/>
         <Copy SourceFiles="@(SourceProtosGoogle)" DestinationFolder="./google/%(RecursiveDir)"/>
     </Target>
-    
+
     <ItemGroup>
         <Protobuf Include="yandex/**/*.proto" />
         <Protobuf Include="google/**/*.proto" />
@@ -44,18 +44,24 @@
         <Protobuf Update="yandex/cloud/access/**/*.proto" OutputDir="$(IntermediateOutputPath)/access" />
         <Protobuf Update="yandex/cloud/ai/**/*.proto" OutputDir="$(IntermediateOutputPath)/ai" />
         <Protobuf Update="yandex/cloud/api/**/*.proto" OutputDir="$(IntermediateOutputPath)/api" />
+        <Protobuf Update="yandex/cloud/apploadbalancer/**/*.proto" OutputDir="$(IntermediateOutputPath)/apploadbalancer" />
+        <Protobuf Update="yandex/cloud/certificatemanager/**/*.proto" OutputDir="$(IntermediateOutputPath)/certificatemanager" />
         <Protobuf Update="yandex/cloud/compute/**/*.proto" OutputDir="$(IntermediateOutputPath)/compute" />
         <Protobuf Update="yandex/cloud/containerregistry/**/*.proto" OutputDir="$(IntermediateOutputPath)/containerregistry" />
         <Protobuf Update="yandex/cloud/dataproc/manager/**/*.proto" OutputDir="$(IntermediateOutputPath)/dpm" />
         <Protobuf Update="yandex/cloud/dataproc/v1/**/*.proto" OutputDir="$(IntermediateOutputPath)/dp1" />
+        <Protobuf Update="yandex/cloud/dns/**/*.proto" OutputDir="$(IntermediateOutputPath)/dns" />
         <Protobuf Update="yandex/cloud/endpoint/**/*.proto" OutputDir="$(IntermediateOutputPath)/endpoint" />
         <Protobuf Update="yandex/cloud/iam/**/*.proto" OutputDir="$(IntermediateOutputPath)/iam" />
         <Protobuf Update="yandex/cloud/iot/**/*.proto" OutputDir="$(IntermediateOutputPath)/iot" />
         <Protobuf Update="yandex/cloud/k8s/**/*.proto" OutputDir="$(IntermediateOutputPath)/k8s" />
         <Protobuf Update="yandex/cloud/kms/**/*.proto" OutputDir="$(IntermediateOutputPath)/kms" />
         <Protobuf Update="yandex/cloud/loadbalancer/**/*.proto" OutputDir="$(IntermediateOutputPath)/loadbalancer" />
+        <Protobuf Update="yandex/cloud/lockbox/**/*.proto" OutputDir="$(IntermediateOutputPath)/lockbox" />
         <Protobuf Update="yandex/cloud/marketplace/**/*.proto" OutputDir="$(IntermediateOutputPath)/marketplace" />
         <Protobuf Update="yandex/cloud/mdb/clickhouse/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-clickhouse" />
+        <Protobuf Update="yandex/cloud/mdb/elasticsearch/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-elasticsearch" />
+        <Protobuf Update="yandex/cloud/mdb/kafka/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-kafka" />
         <Protobuf Update="yandex/cloud/mdb/mongodb/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-mongodb" />
         <Protobuf Update="yandex/cloud/mdb/mysql/v1/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-mysql1" />
         <Protobuf Update="yandex/cloud/mdb/mysql/v1alpha/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-mysql1a" />
@@ -63,7 +69,9 @@
         <Protobuf Update="yandex/cloud/mdb/redis/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-redis" />
         <Protobuf Update="yandex/cloud/mdb/redis/v1/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-redis1" />
         <Protobuf Update="yandex/cloud/mdb/redis/v1alpha/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-redis1a" />
+        <Protobuf Update="yandex/cloud/mdb/sqlserver/**/*.proto" OutputDir="$(IntermediateOutputPath)/mdb-sqlserver" />
         <Protobuf Update="yandex/cloud/operation/**/*.proto" OutputDir="$(IntermediateOutputPath)/operation" />
+        <Protobuf Update="yandex/cloud/reference/**/*.proto" OutputDir="$(IntermediateOutputPath)/reference" />
         <Protobuf Update="yandex/cloud/resourcemanager/**/*.proto" OutputDir="$(IntermediateOutputPath)/rm" />
         <Protobuf Update="yandex/cloud/serverless/**/*.proto" OutputDir="$(IntermediateOutputPath)/serverless" />
         <Protobuf Update="yandex/cloud/vpc/**/*.proto" OutputDir="$(IntermediateOutputPath)/vpc" />

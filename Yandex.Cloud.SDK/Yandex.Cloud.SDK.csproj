@@ -8,7 +8,7 @@
         <Title>Yandex.Cloud SDK</Title>
         <Summary>Software Development Kit designed to ease interaction with Yandex.Cloud API.</Summary>
         <Description>See project site for more info.</Description>
-        <PackageVersion>1.0.2</PackageVersion>
+        <PackageVersion>1.0.3</PackageVersion>
         <Authors>Yandex.Cloud</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>
@@ -31,5 +31,5 @@
         <Exec Command="dotnet ../tools/bin/Debug/netcoreapp3.1/tools.dll ./Generated.cs" Condition="'$(MSBuildRuntimeType)' == 'Core'"/>
         <Exec Command="../tools/bin/Debug/netstandard2.0/tools.exe ./Generated.cs" Condition="'$(MSBuildRuntimeType)' != 'Core'"/>
     </Target>
-    
+
 </Project>

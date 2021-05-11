@@ -7,6 +7,7 @@ namespace tools
         public static readonly Dictionary<string, EndpointConfig> Endpoints = new Dictionary<string, EndpointConfig>()
         {
             {"Services", new EndpointConfig("")},
+            {"Services_Dns", new EndpointConfig("dns")},
             {"Services_Endpoint", new EndpointConfig("endpoint")},
             {"Services_Access", new EndpointConfig("access")},
             {"Services_Iam", new EndpointConfig("iam")},
@@ -38,7 +39,13 @@ namespace tools
                 {
                     {"SymmetricCryptoService", "kms-crypto"},
                 })
-            }
+            },
+            {
+                "Services_Lockbox", new EndpointConfig("lockbox", new Dictionary<string, string>()
+                {
+                    {"PayloadService", "lockbox-payload"},
+                })
+            },
         };
     }
 
