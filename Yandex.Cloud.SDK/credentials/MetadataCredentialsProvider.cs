@@ -37,7 +37,7 @@ namespace Yandex.Cloud.Credentials
             var response = await _client.SendAsync(request);
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                return await FetchToken(retry++);
+                return await FetchToken(++retry);
             }
 
             var data = await response.Content.ReadAsStringAsync();

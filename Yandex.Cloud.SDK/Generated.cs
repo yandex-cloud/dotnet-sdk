@@ -11,6 +11,56 @@ namespace Yandex.Cloud.Generated
 {
     
     
+    public class Services_Ydb : Yandex.Cloud.ServiceRegistry
+    {
+        
+        public Services_Ydb(Yandex.Cloud.Sdk sdk) : 
+                base(sdk, "unknown")
+        {
+            throw new System.Exception("service Services_Ydb is not supported at this moment");
+        }
+        
+        public virtual Yandex.Cloud.Ydb.V1.BackupService.BackupServiceClient BackupService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ydb.V1.BackupService.BackupServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Ydb.V1.DatabaseService.DatabaseServiceClient DatabaseService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ydb.V1.DatabaseService.DatabaseServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Ydb.V1.LocationService.LocationServiceClient LocationService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ydb.V1.LocationService.LocationServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Ydb.V1.ResourcePresetService.ResourcePresetServiceClient ResourcePresetService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ydb.V1.ResourcePresetService.ResourcePresetServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Ydb.V1.StorageTypeService.StorageTypeServiceClient StorageTypeService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ydb.V1.StorageTypeService.StorageTypeServiceClient(this.GetChannel());
+            }
+        }
+    }
+    
     public class Services_Vpc : Yandex.Cloud.ServiceRegistry
     {
         
@@ -470,6 +520,14 @@ namespace Yandex.Cloud.Generated
                 base(sdk, "unknown")
         {
             throw new System.Exception("service Services_Mdb_Elasticsearch is not supported at this moment");
+        }
+        
+        public virtual Yandex.Cloud.Mdb.Elasticsearch.V1.AuthService.AuthServiceClient AuthService
+        {
+            get
+            {
+                return new Yandex.Cloud.Mdb.Elasticsearch.V1.AuthService.AuthServiceClient(this.GetChannel());
+            }
         }
         
         public virtual Yandex.Cloud.Mdb.Elasticsearch.V1.ClusterService.ClusterServiceClient ClusterService
@@ -972,6 +1030,32 @@ namespace Yandex.Cloud.Generated
         }
     }
     
+    public class Services_Datasphere : Yandex.Cloud.ServiceRegistry
+    {
+        
+        public Services_Datasphere(Yandex.Cloud.Sdk sdk) : 
+                base(sdk, "unknown")
+        {
+            throw new System.Exception("service Services_Datasphere is not supported at this moment");
+        }
+        
+        public virtual Yandex.Cloud.Datasphere.V1.NodeService.NodeServiceClient NodeService
+        {
+            get
+            {
+                return new Yandex.Cloud.Datasphere.V1.NodeService.NodeServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Datasphere.V1.ProjectService.ProjectServiceClient ProjectService
+        {
+            get
+            {
+                return new Yandex.Cloud.Datasphere.V1.ProjectService.ProjectServiceClient(this.GetChannel());
+            }
+        }
+    }
+    
     public class Services_Dataproc_Manager : Yandex.Cloud.ServiceRegistry
     {
         
@@ -1379,6 +1463,14 @@ namespace Yandex.Cloud.Generated
         {
         }
         
+        public virtual Services_Ydb Ydb
+        {
+            get
+            {
+                return new Services_Ydb(this.Sdk());
+            }
+        }
+        
         public virtual Services_Vpc Vpc
         {
             get
@@ -1488,6 +1580,14 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Services_Dns(this.Sdk());
+            }
+        }
+        
+        public virtual Services_Datasphere Datasphere
+        {
+            get
+            {
+                return new Services_Datasphere(this.Sdk());
             }
         }
         
