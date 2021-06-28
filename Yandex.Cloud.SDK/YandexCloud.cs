@@ -1,4 +1,5 @@
-﻿using Grpc.Core;
+﻿using System.Threading.Tasks;
+using Grpc.Core;
 using Yandex.Cloud.Credentials;
 using Yandex.Cloud.Endpoint;
 using Yandex.Cloud.Generated;
@@ -7,9 +8,16 @@ namespace Yandex.Cloud
 {
     public class Sdk
     {
+        private readonly ChannelCredentials _channelCredentials = new SslCredentials();
+        private readonly ICredentialsProvider _credentialsProvider;
+        private readonly Channel _apiEndpointChannel;
+        public readonly Services Services;
+
+
         public Sdk(ICredentialsProvider credentialsProvider)
         {
             _credentialsProvider = credentialsProvider;
+            _apiEndpointChannel = new Channel("api.cloud.yandex.net:443", _channelCredentials);
             Services = new Services(this);
         }
 
@@ -17,24 +25,11 @@ namespace Yandex.Cloud
         {
         }
 
-        public readonly Services Services;
-
-        /////////
-
-        private ApiEndpointService.ApiEndpointServiceClient EndpointService()
-        {
-            var channel = new Channel("api.cloud.yandex.net:443", _channelCredentials);
-            return new ApiEndpointService.ApiEndpointServiceClient(channel);
-        }
-
-        private readonly ChannelCredentials _channelCredentials = new SslCredentials();
-        private readonly ICredentialsProvider _credentialsProvider;
-
         public ChannelCredentials GetCredentials()
         {
             return ChannelCredentials.Create(
                 _channelCredentials,
-                CallCredentials.FromInterceptor(async (context, metadata) =>
+                CallCredentials.FromInterceptor((context, metadata) =>
                 {
                     metadata.Add(
                         new Metadata.Entry(
@@ -42,19 +37,20 @@ namespace Yandex.Cloud
                             $"Bearer {_credentialsProvider.GetToken()}"
                         )
                     );
+
+                    return Task.CompletedTask;
                 })
             );
         }
 
         public string GetEndpointAddress(string endpoint)
         {
+            var client = new ApiEndpointService.ApiEndpointServiceClient(_apiEndpointChannel);
+
             var req = new GetApiEndpointRequest {ApiEndpointId = endpoint};
-            return EndpointService().Get(req).Address;
+            return client.Get(req).Address;
         }
 
-        private Channel CreateChannelForEndpoint(string endpoint)
-        {
-            return new Channel(GetEndpointAddress(endpoint), GetCredentials());
-        }
+        internal ICredentialsProvider CredentialsProvider => _credentialsProvider;
     }
 }
