@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
         <RootNamespace>Yandex.Cloud</RootNamespace>
 
         <PackageId>Yandex.Cloud.Protos</PackageId>
         <Title>Yandex.Cloud Protocol Buffer Library</Title>
         <Summary>Auto-generated library from Protocol Buffer descriptors.</Summary>
         <Description>See project site for more info.</Description>
-        <PackageVersion>1.0.5</PackageVersion>
+        <PackageVersion>1.0.6</PackageVersion>
         <Authors>Yandex.Cloud</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>
         <PackageReleaseNotes>Yandex Cloud SDK</PackageReleaseNotes>
-        <Copyright>Copyright 2020, YANDEX LLC.</Copyright>
+        <Copyright>Copyright 2021, YANDEX LLC.</Copyright>
         <PackageTags>yandex-cloud sdk proto proto3 protobuf grpc</PackageTags>
     </PropertyGroup>
 

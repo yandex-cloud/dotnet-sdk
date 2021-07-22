@@ -1,8 +1,8 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace Yandex.Cloud.Credentials
 {
@@ -41,8 +41,16 @@ namespace Yandex.Cloud.Credentials
             }
 
             var data = await response.Content.ReadAsStringAsync();
-            dynamic obj = JToken.Parse(data);
-            return obj.access_token;
+            var token = JsonSerializer.Deserialize<Token>(data);
+            return token.access_token;
+        }
+
+        class Token
+        {
+            public string access_token { get; set; }
+
+            //public string expires_in;
+            //public string token_type;
         }
     }
 }
