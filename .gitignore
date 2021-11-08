@@ -6,3 +6,8 @@ dist
 Yandex.Cloud.Protos/google
 Yandex.Cloud.Protos/yandex
 .vs
+
+##
+## Visual Studio Code
+##
+.vscode/*
