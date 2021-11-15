@@ -40,5 +40,14 @@ namespace Yandex.Cloud.SDK.Tests
             var folders = fs.List(new ListFoldersRequest() {CloudId = clouds[0].Id}).Folders;
             Assert.NotZero(folders.Count);
         }
+
+        [Test]
+        public void TestSkuService_List()
+        {
+            var service = _sdk.Services.Billing.SkuService;
+
+            var response = service.List(new Billing.V1.ListSkusRequest());
+            Assert.NotZero(response.Skus.Count);
+        }
     }
 }
