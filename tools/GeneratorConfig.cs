@@ -46,6 +46,7 @@ namespace tools
                     {"PayloadService", "lockbox-payload"},
                 })
             },
+            {"Services_Billing", new EndpointConfig("billing")}
         };
     }
 
