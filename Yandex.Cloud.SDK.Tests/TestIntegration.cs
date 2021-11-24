@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Yandex.Cloud.Credentials;
 using Yandex.Cloud.Resourcemanager.V1;
@@ -48,6 +49,24 @@ namespace Yandex.Cloud.SDK.Tests
 
             var response = service.List(new Billing.V1.ListSkusRequest());
             Assert.NotZero(response.Skus.Count);
+        }
+
+        [Test]
+        public void TestFunctionContext()
+        {
+            var answer = 42;
+            var foobar = "foobar";
+
+            var values = new Dictionary<string, object>
+            {
+                { nameof(Yandex.Cloud.Functions.Context.MemoryLimitInMB), answer },
+                { nameof(Yandex.Cloud.Functions.Context.FunctionId), foobar },
+            };
+
+            var context = new Yandex.Cloud.Functions.YcDictionaryFunctionContext(values, true);
+
+            Assert.AreEqual(answer, context.MemoryLimitInMB);
+            Assert.AreEqual(foobar, context.FunctionId);
         }
     }
 }
