@@ -2,7 +2,7 @@
 [![CircleCI](https://img.shields.io/circleci/build/gh/yandex-cloud/dotnet-sdk/master)](https://circleci.com/gh/yandex-cloud/dotnet-sdk/tree/master)
 [![License](https://img.shields.io/github/license/yandex-cloud/dotnet-sdk.svg)](https://github.com/yandex-cloud/dotnet-sdk/blob/master/LICENSE)
 
-# Yandex.Cloud SDK (C#) 
+# Yandex.Cloud SDK (C#)
 
 Need to automate your infrastructure or use services provided by Yandex.Cloud? We've got you covered.
 
@@ -12,9 +12,8 @@ Installation:
 
 ## Getting started
 
-There are several options for authorization your requests - OAuth Token,
-Metadata Service (if you're executing code inside VMs or Functions
-running in Yandex.Cloud) and Service Account Keys
+There are several options for authorization your requests - OAuth Token, Metadata Service (if you're executing code
+inside VMs or Functions running in Yandex.Cloud) and Service Account Keys
 
 ### OAuth Token
 
@@ -23,6 +22,25 @@ using Yandex.Cloud;
 using Yandex.Cloud.Credentials;
 
 var sdk = new Sdk(new OAuthCredentialsProvider("AQAD-....."));
+```
+
+### Service Account credentials
+
+```csharp
+using System.IO;
+using System.Text.Json;
+using Yandex.Cloud;
+using Yandex.Cloud.Credentials;
+
+var reader = File.OpenText("path/key.json");
+var keyJson = JsonDocument.Parse(reader.ReadToEnd());
+var sdk = new Sdk(
+    new IamJwtCredentialsProvider(
+        keyJson.RootElement.GetProperty("service_account_id").GetString(),
+        keyJson.RootElement.GetProperty("id").GetString(),
+        keyJson.RootElement.GetProperty("private_key").GetString()
+    )
+);
 ```
 
 ### Metadata Service
