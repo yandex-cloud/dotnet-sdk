@@ -16,7 +16,13 @@ namespace Yandex.Cloud.Credentials
             _tokenService = TokenService();
             _oauthToken = oauthToken;
         }
-        
+
+        public OAuthCredentialsProvider(string oauthToken, IamTokenService.IamTokenServiceClient tokenService)
+        {
+            _tokenService = tokenService;
+            _oauthToken = oauthToken;
+        }
+
         private IamTokenService.IamTokenServiceClient TokenService()
         {
             var channel = new Channel("iam.api.cloud.yandex.net:443", new SslCredentials());
@@ -26,7 +32,7 @@ namespace Yandex.Cloud.Credentials
         public string GetToken()
         {
             var expiration = DateTimeOffset.Now.ToUnixTimeSeconds() + 300;
-            if (_iamToken == null || _iamToken.ExpiresAt.Seconds > expiration)
+            if (_iamToken == null || _iamToken.ExpiresAt.Seconds <= expiration)
             {
                 _iamToken = _tokenService.Create(new CreateIamTokenRequest()
                 {
