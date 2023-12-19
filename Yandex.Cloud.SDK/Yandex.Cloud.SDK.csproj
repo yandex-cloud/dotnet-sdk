@@ -8,12 +8,12 @@
         <Title>Yandex.Cloud SDK</Title>
         <Summary>Software Development Kit designed to ease interaction with Yandex.Cloud API.</Summary>
         <Description>See project site for more info.</Description>
-        <PackageVersion>1.2.0</PackageVersion>
+        <PackageVersion>1.3.0</PackageVersion>
         <Authors>Yandex.Cloud</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>
         <PackageReleaseNotes>Yandex Cloud SDK</PackageReleaseNotes>
-        <Copyright>Copyright 2022, YANDEX LLC.</Copyright>
+        <Copyright>Copyright 2023, YANDEX LLC.</Copyright>
         <PackageTags>yandex-cloud sdk proto proto3 protobuf grpc</PackageTags>
     </PropertyGroup>
 
@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <Target Name="GenerateServices" BeforeTargets="BeforeBuild">
-        <Exec Command="dotnet ../tools/bin/$(Configuration)/netcoreapp3.1/tools.dll ./Generated.cs" />
+        <Exec Command="dotnet ../tools/bin/$(Configuration)/net8/tools.dll ./Generated.cs" />
     </Target>
 
 </Project>
