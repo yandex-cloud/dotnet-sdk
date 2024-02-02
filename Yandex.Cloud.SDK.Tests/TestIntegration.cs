@@ -26,7 +26,7 @@ namespace Yandex.Cloud.SDK.Tests
         public void TestListClouds()
         {
             var resp = _sdk.Services.Resourcemanager.CloudService.List(new ListCloudsRequest());
-            Assert.NotZero(resp.Clouds.Count);
+            Assert.That(resp.Clouds, Is.Not.Empty);
         }
 
         [Test]
@@ -36,10 +36,10 @@ namespace Yandex.Cloud.SDK.Tests
             var fs = _sdk.Services.Resourcemanager.FolderService;
 
             var clouds = cs.List(new ListCloudsRequest()).Clouds;
-            Assert.NotZero(clouds.Count);
+            Assert.That(clouds, Is.Not.Empty);
 
             var folders = fs.List(new ListFoldersRequest() {CloudId = clouds[0].Id}).Folders;
-            Assert.NotZero(folders.Count);
+            Assert.That(folders, Is.Not.Empty);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace Yandex.Cloud.SDK.Tests
             var service = _sdk.Services.Billing.SkuService;
 
             var response = service.List(new Billing.V1.ListSkusRequest());
-            Assert.NotZero(response.Skus.Count);
+            Assert.That(response.Skus, Is.Not.Empty);
         }
 
         [Test]
@@ -65,8 +65,8 @@ namespace Yandex.Cloud.SDK.Tests
 
             var context = new Yandex.Cloud.Functions.YcDictionaryFunctionContext(values, true);
 
-            Assert.AreEqual(answer, context.MemoryLimitInMB);
-            Assert.AreEqual(foobar, context.FunctionId);
+            Assert.That(answer, Is.EqualTo(context.MemoryLimitInMB));
+            Assert.That(foobar, Is.EqualTo(context.FunctionId));
         }
     }
 }
