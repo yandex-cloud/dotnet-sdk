@@ -117,6 +117,64 @@ namespace Yandex.Cloud.Generated
         }
     }
     
+    public class Services_Video : Yandex.Cloud.ServiceRegistry
+    {
+        
+        public Services_Video(Yandex.Cloud.Sdk sdk) : 
+                base(sdk, "unknown")
+        {
+            throw new System.Exception("service Services_Video is not supported at this moment");
+        }
+        
+        public virtual Yandex.Cloud.Video.V1.ChannelService.ChannelServiceClient ChannelService
+        {
+            get
+            {
+                return new Yandex.Cloud.Video.V1.ChannelService.ChannelServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Video.V1.EpisodeService.EpisodeServiceClient EpisodeService
+        {
+            get
+            {
+                return new Yandex.Cloud.Video.V1.EpisodeService.EpisodeServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Video.V1.StreamLineService.StreamLineServiceClient StreamLineService
+        {
+            get
+            {
+                return new Yandex.Cloud.Video.V1.StreamLineService.StreamLineServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Video.V1.StreamService.StreamServiceClient StreamService
+        {
+            get
+            {
+                return new Yandex.Cloud.Video.V1.StreamService.StreamServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Video.V1.ThumbnailService.ThumbnailServiceClient ThumbnailService
+        {
+            get
+            {
+                return new Yandex.Cloud.Video.V1.ThumbnailService.ThumbnailServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Video.V1.VideoService.VideoServiceClient VideoService
+        {
+            get
+            {
+                return new Yandex.Cloud.Video.V1.VideoService.VideoServiceClient(this.GetChannel());
+            }
+        }
+    }
+    
     public class Services_Storage : Yandex.Cloud.ServiceRegistry
     {
         
@@ -131,6 +189,24 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Yandex.Cloud.Storage.V1.BucketService.BucketServiceClient(this.GetChannel());
+            }
+        }
+    }
+    
+    public class Services_Speechsense : Yandex.Cloud.ServiceRegistry
+    {
+        
+        public Services_Speechsense(Yandex.Cloud.Sdk sdk) : 
+                base(sdk, "unknown")
+        {
+            throw new System.Exception("service Services_Speechsense is not supported at this moment");
+        }
+        
+        public virtual Yandex.Cloud.Speechsense.V1.TalkService.TalkServiceClient TalkService
+        {
+            get
+            {
+                return new Yandex.Cloud.Speechsense.V1.TalkService.TalkServiceClient(this.GetChannel());
             }
         }
     }
@@ -182,6 +258,14 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Yandex.Cloud.Serverless.Functions.V1.FunctionService.FunctionServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Serverless.Functions.V1.NetworkService.NetworkServiceClient NetworkService
+        {
+            get
+            {
+                return new Yandex.Cloud.Serverless.Functions.V1.NetworkService.NetworkServiceClient(this.GetChannel());
             }
         }
     }
@@ -377,6 +461,14 @@ namespace Yandex.Cloud.Generated
             }
         }
         
+        public virtual Yandex.Cloud.Organizationmanager.V1.OsLoginService.OsLoginServiceClient OsLoginService
+        {
+            get
+            {
+                return new Yandex.Cloud.Organizationmanager.V1.OsLoginService.OsLoginServiceClient(this.GetChannel());
+            }
+        }
+        
         public virtual Yandex.Cloud.Organizationmanager.V1.SshCertificateService.SshCertificateServiceClient SshCertificateService
         {
             get
@@ -390,6 +482,14 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Yandex.Cloud.Organizationmanager.V1.UserService.UserServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Organizationmanager.V1.UserSshKeyService.UserSshKeyServiceClient UserSshKeyService
+        {
+            get
+            {
+                return new Yandex.Cloud.Organizationmanager.V1.UserSshKeyService.UserSshKeyServiceClient(this.GetChannel());
             }
         }
         
@@ -796,6 +896,22 @@ namespace Yandex.Cloud.Generated
             get
             {
                 return new Yandex.Cloud.Mdb.Greenplum.V1.ClusterService.ClusterServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Mdb.Greenplum.V1.HBARuleService.HBARuleServiceClient HBARuleService
+        {
+            get
+            {
+                return new Yandex.Cloud.Mdb.Greenplum.V1.HBARuleService.HBARuleServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Mdb.Greenplum.V1.PXFDatasourceService.PXFDatasourceServiceClient PXFDatasourceService
+        {
+            get
+            {
+                return new Yandex.Cloud.Mdb.Greenplum.V1.PXFDatasourceService.PXFDatasourceServiceClient(this.GetChannel());
             }
         }
         
@@ -1721,11 +1837,35 @@ namespace Yandex.Cloud.Generated
             }
         }
         
+        public virtual Yandex.Cloud.Datasphere.V2.DatasetService.DatasetServiceClient DatasetService
+        {
+            get
+            {
+                return new Yandex.Cloud.Datasphere.V2.DatasetService.DatasetServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Datasphere.V2.DockerImageService.DockerImageServiceClient DockerImageService
+        {
+            get
+            {
+                return new Yandex.Cloud.Datasphere.V2.DockerImageService.DockerImageServiceClient(this.GetChannel());
+            }
+        }
+        
         public virtual Yandex.Cloud.Datasphere.V1.ProjectService.ProjectServiceClient ProjectService
         {
             get
             {
                 return new Yandex.Cloud.Datasphere.V1.ProjectService.ProjectServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Datasphere.V2.S3Service.S3ServiceClient S3Service
+        {
+            get
+            {
+                return new Yandex.Cloud.Datasphere.V2.S3Service.S3ServiceClient(this.GetChannel());
             }
         }
         
@@ -2119,6 +2259,14 @@ namespace Yandex.Cloud.Generated
                 return new Yandex.Cloud.Cdn.V1.ResourceService.ResourceServiceClient(this.GetChannel());
             }
         }
+        
+        public virtual Yandex.Cloud.Cdn.V1.ResourceRulesService.ResourceRulesServiceClient ResourceRulesService
+        {
+            get
+            {
+                return new Yandex.Cloud.Cdn.V1.ResourceRulesService.ResourceRulesServiceClient(this.GetChannel());
+            }
+        }
     }
     
     public class Services_Billing : Yandex.Cloud.ServiceRegistry
@@ -2346,6 +2494,48 @@ namespace Yandex.Cloud.Generated
         }
     }
     
+    public class Services_Ai_FoundationModels : Yandex.Cloud.ServiceRegistry
+    {
+        
+        public Services_Ai_FoundationModels(Yandex.Cloud.Sdk sdk) : 
+                base(sdk, "unknown")
+        {
+            throw new System.Exception("service Services_Ai_FoundationModels is not supported at this moment");
+        }
+        
+        public virtual Yandex.Cloud.Ai.FoundationModels.V1.TextGenerationService.TextGenerationServiceClient TextGenerationService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ai.FoundationModels.V1.TextGenerationService.TextGenerationServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Ai.FoundationModels.V1.TextGenerationAsyncService.TextGenerationAsyncServiceClient TextGenerationAsyncService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ai.FoundationModels.V1.TextGenerationAsyncService.TextGenerationAsyncServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Ai.FoundationModels.V1.TokenizerService.TokenizerServiceClient TokenizerService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ai.FoundationModels.V1.TokenizerService.TokenizerServiceClient(this.GetChannel());
+            }
+        }
+        
+        public virtual Yandex.Cloud.Ai.FoundationModels.V1.EmbeddingsService.EmbeddingsServiceClient EmbeddingsService
+        {
+            get
+            {
+                return new Yandex.Cloud.Ai.FoundationModels.V1.EmbeddingsService.EmbeddingsServiceClient(this.GetChannel());
+            }
+        }
+    }
+    
     public class Services_Ai : Yandex.Cloud.ServiceRegistry
     {
         
@@ -2385,6 +2575,14 @@ namespace Yandex.Cloud.Generated
                 return new Services_Ai_Ocr(this.Sdk());
             }
         }
+        
+        public virtual Services_Ai_FoundationModels FoundationModels
+        {
+            get
+            {
+                return new Services_Ai_FoundationModels(this.Sdk());
+            }
+        }
     }
     
     public class Services : Yandex.Cloud.ServiceRegistry
@@ -2411,11 +2609,27 @@ namespace Yandex.Cloud.Generated
             }
         }
         
+        public virtual Services_Video Video
+        {
+            get
+            {
+                return new Services_Video(this.Sdk());
+            }
+        }
+        
         public virtual Services_Storage Storage
         {
             get
             {
                 return new Services_Storage(this.Sdk());
+            }
+        }
+        
+        public virtual Services_Speechsense Speechsense
+        {
+            get
+            {
+                return new Services_Speechsense(this.Sdk());
             }
         }
         
