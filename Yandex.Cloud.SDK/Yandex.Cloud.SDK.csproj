@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>Yandex.Cloud</RootNamespace>
 
         <PackageId>Yandex.Cloud.SDK</PackageId>
@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <Target Name="GenerateServices" BeforeTargets="BeforeBuild">
-        <Exec Command="dotnet ../tools/bin/$(Configuration)/net8/tools.dll ./Generated.cs" />
+        <Exec Command="dotnet ../artifacts/bin/tools/$(Configuration)/tools.dll ./Generated.cs" />
     </Target>
 
 </Project>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>Yandex.Cloud</RootNamespace>
 
         <PackageId>Yandex.Cloud.Protos</PackageId>
@@ -21,6 +21,7 @@
         <PackageReference Include="Google.Protobuf" Version="3.19.1" />
         <PackageReference Include="Grpc" Version="2.41.1" />
         <PackageReference Include="Grpc.Tools" Version="2.41.1" PrivateAssets="all" />
+        <PackageReference Include="Contrib.Grpc.Core.M1" Version="2.41.0" />
     </ItemGroup>
     <ItemGroup>
         <Protobuf Include="../cloudapi/third_party/googleapis/google/**/*.proto" ProtoRoot="../cloudapi/third_party/googleapis" />

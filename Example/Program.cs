@@ -10,7 +10,15 @@ namespace Example
     {
         public static void Main(string[] args)
         {
-            var sdk = new Sdk();
+            var token = Environment.GetEnvironmentVariable("YC_TOKEN");
+            if (token == null)
+            {
+                Console.WriteLine("YC_TOKEN must be set to run example");
+                Environment.Exit(1);
+            }
+            
+            var credProvider = new OAuthCredentialsProvider(token);
+            var sdk = new Sdk(credProvider);
             var response = sdk.Services.Resourcemanager.CloudService.List(new ListCloudsRequest());
 
             foreach (var c in response.Clouds)
