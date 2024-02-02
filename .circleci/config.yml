@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: mcr.microsoft.com/dotnet/sdk:8.0
+      - image: mcr.microsoft.com/dotnet/sdk:6.0
     working_directory: ~/repo
     steps:
       - checkout
