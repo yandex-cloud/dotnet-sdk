@@ -1,6 +1,6 @@
 using System;
 using Grpc.Core;
-using Yandex.Cloud.Endpoint;
+using Grpc.Net.Client;
 using Yandex.Cloud.Iam.V1;
 
 namespace Yandex.Cloud.Credentials
@@ -19,14 +19,17 @@ namespace Yandex.Cloud.Credentials
         
         private IamTokenService.IamTokenServiceClient TokenService()
         {
-            var channel = new Channel("iam.api.cloud.yandex.net:443", new SslCredentials());
+            var channel = GrpcChannel.ForAddress("https://iam.api.cloud.yandex.net:443", new GrpcChannelOptions
+            {
+                Credentials = new SslCredentials()
+            });
             return new IamTokenService.IamTokenServiceClient(channel);
         }
 
         public string GetToken()
         {
             var expiration = DateTimeOffset.Now.ToUnixTimeSeconds() + 300;
-            if (_iamToken == null || _iamToken.ExpiresAt.Seconds > expiration)
+            if (_iamToken == null || _iamToken.ExpiresAt.Seconds < expiration)
             {
                 _iamToken = _tokenService.Create(new CreateIamTokenRequest()
                 {

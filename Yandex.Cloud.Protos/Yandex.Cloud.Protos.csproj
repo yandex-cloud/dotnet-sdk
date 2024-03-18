@@ -8,74 +8,48 @@
         <Title>Yandex.Cloud Protocol Buffer Library</Title>
         <Summary>Auto-generated library from Protocol Buffer descriptors.</Summary>
         <Description>See project site for more info.</Description>
-        <PackageVersion>1.3.0</PackageVersion>
+        <PackageVersion>1.4.0-pre1</PackageVersion>
         <Authors>Yandex.Cloud</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>
         <PackageReleaseNotes>Yandex Cloud SDK</PackageReleaseNotes>
-        <Copyright>Copyright 2023, YANDEX LLC.</Copyright>
+        <Copyright>Copyright 2024, YANDEX LLC.</Copyright>
         <PackageTags>yandex-cloud sdk proto proto3 protobuf grpc</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Google.Protobuf" Version="3.19.1" />
-        <PackageReference Include="Grpc" Version="2.41.1" />
-        <PackageReference Include="Grpc.Tools" Version="2.41.1" PrivateAssets="all" />
-        <PackageReference Include="Contrib.Grpc.Core.M1" Version="2.41.0" />
+        <PackageReference Include="Google.Protobuf" Version="3.26.0" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.61.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.62.0">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <Protobuf Include="../cloudapi/third_party/googleapis/google/**/*.proto" ProtoRoot="../cloudapi/third_party/googleapis" />
         <Protobuf Include="../cloudapi/yandex/**/*.proto" ProtoRoot="../cloudapi" AdditionalImportDirs="../cloudapi/third_party/googleapis" GrpcServices="Client" />
     </ItemGroup>
-    
-    
+
+
     <Target Name="Replace1" AfterTargets="Protobuf_AfterCompile">
         <PropertyGroup>
             <InputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Kafka.cs</InputFile>
             <OutputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Kafka.cs</OutputFile>
         </PropertyGroup>
-        <WriteLinesToFile
-                File="$(OutputFile)"
-                Lines="$([System.IO.File]::ReadAllText($(InputFile)).
-                Replace('public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser {','public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser_ {').
-                Replace('if (!object.Equals(Parser, other.Parser)) return false;','if (!object.Equals(Parser_, other.Parser_)) return false;').
-                Replace('output.WriteMessage(Parser);', 'output.WriteMessage(Parser_);').
-                Replace('size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser);', 'size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser_);').
-                Replace('Parser = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();', 'Parser_ = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();').
-                Replace('Parser.MergeFrom(other.Parser);', 'Parser_.MergeFrom(other.Parser_);').
-                Replace('input.ReadMessage(Parser);', 'input.ReadMessage(Parser_);'))"
-                Overwrite="true"
-                Encoding="Unicode"/>
+        <WriteLinesToFile File="$(OutputFile)" Lines="$([System.IO.File]::ReadAllText($(InputFile)).&#xD;&#xA;                Replace('public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser {','public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser_ {').&#xD;&#xA;                Replace('if (!object.Equals(Parser, other.Parser)) return false;','if (!object.Equals(Parser_, other.Parser_)) return false;').&#xD;&#xA;                Replace('output.WriteMessage(Parser);', 'output.WriteMessage(Parser_);').&#xD;&#xA;                Replace('size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser);', 'size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser_);').&#xD;&#xA;                Replace('Parser = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();', 'Parser_ = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();').&#xD;&#xA;                Replace('Parser.MergeFrom(other.Parser);', 'Parser_.MergeFrom(other.Parser_);').&#xD;&#xA;                Replace('input.ReadMessage(Parser);', 'input.ReadMessage(Parser_);'))" Overwrite="true" Encoding="Unicode" />
     </Target>
     <Target Name="Replace2" AfterTargets="Protobuf_AfterCompile">
         <PropertyGroup>
             <InputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Parsers.cs</InputFile>
             <OutputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Parsers.cs</OutputFile>
         </PropertyGroup>
-        <WriteLinesToFile
-                File="$(OutputFile)"
-                Lines="$([System.IO.File]::ReadAllText($(InputFile)).
-                Replace(', global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser.Parser,',', global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser.Parser_,').
-                Replace('public static pb::MessageParser&lt;Parser&gt; Parser {','public static pb::MessageParser&lt;Parser&gt; Parser_ {'))"
-                Overwrite="true"
-                Encoding="Unicode"/>
+        <WriteLinesToFile File="$(OutputFile)" Lines="$([System.IO.File]::ReadAllText($(InputFile)).&#xD;&#xA;                Replace(', global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser.Parser,',', global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser.Parser_,').&#xD;&#xA;                Replace('public static pb::MessageParser&lt;Parser&gt; Parser {','public static pb::MessageParser&lt;Parser&gt; Parser_ {'))" Overwrite="true" Encoding="Unicode" />
     </Target>
     <Target Name="Replace3" AfterTargets="Protobuf_AfterCompile">
         <PropertyGroup>
             <InputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Yds.cs</InputFile>
             <OutputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Yds.cs</OutputFile>
         </PropertyGroup>
-        <WriteLinesToFile
-                File="$(OutputFile)"
-                Lines="$([System.IO.File]::ReadAllText($(InputFile)).
-                Replace('public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser {','public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser_ {').
-                Replace('if (!object.Equals(Parser, other.Parser)) return false;','if (!object.Equals(Parser_, other.Parser_)) return false;').
-                Replace('output.WriteMessage(Parser);', 'output.WriteMessage(Parser_);').
-                Replace('size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser);', 'size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser_);').
-                Replace('Parser = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();', 'Parser_ = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();').
-                Replace('Parser.MergeFrom(other.Parser);', 'Parser_.MergeFrom(other.Parser_);').
-                Replace('input.ReadMessage(Parser);', 'input.ReadMessage(Parser_);'))"
-                Overwrite="true"
-                Encoding="Unicode"/>
+        <WriteLinesToFile File="$(OutputFile)" Lines="$([System.IO.File]::ReadAllText($(InputFile)).&#xD;&#xA;                Replace('public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser {','public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser_ {').&#xD;&#xA;                Replace('if (!object.Equals(Parser, other.Parser)) return false;','if (!object.Equals(Parser_, other.Parser_)) return false;').&#xD;&#xA;                Replace('output.WriteMessage(Parser);', 'output.WriteMessage(Parser_);').&#xD;&#xA;                Replace('size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser);', 'size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser_);').&#xD;&#xA;                Replace('Parser = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();', 'Parser_ = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();').&#xD;&#xA;                Replace('Parser.MergeFrom(other.Parser);', 'Parser_.MergeFrom(other.Parser_);').&#xD;&#xA;                Replace('input.ReadMessage(Parser);', 'input.ReadMessage(Parser_);'))" Overwrite="true" Encoding="Unicode" />
     </Target>
 </Project>

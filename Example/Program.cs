@@ -1,5 +1,4 @@
 ﻿using System;
-using Yandex.Cloud.Endpoint;
 using Yandex.Cloud.Resourcemanager.V1;
 using Yandex.Cloud;
 using Yandex.Cloud.Credentials;
