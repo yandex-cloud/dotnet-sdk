@@ -36,20 +36,48 @@
             <InputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Kafka.cs</InputFile>
             <OutputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Kafka.cs</OutputFile>
         </PropertyGroup>
-        <WriteLinesToFile File="$(OutputFile)" Lines="$([System.IO.File]::ReadAllText($(InputFile)).&#xD;&#xA;                Replace('public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser {','public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser_ {').&#xD;&#xA;                Replace('if (!object.Equals(Parser, other.Parser)) return false;','if (!object.Equals(Parser_, other.Parser_)) return false;').&#xD;&#xA;                Replace('output.WriteMessage(Parser);', 'output.WriteMessage(Parser_);').&#xD;&#xA;                Replace('size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser);', 'size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser_);').&#xD;&#xA;                Replace('Parser = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();', 'Parser_ = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();').&#xD;&#xA;                Replace('Parser.MergeFrom(other.Parser);', 'Parser_.MergeFrom(other.Parser_);').&#xD;&#xA;                Replace('input.ReadMessage(Parser);', 'input.ReadMessage(Parser_);'))" Overwrite="true" Encoding="Unicode" />
+        <WriteLinesToFile
+                File="$(OutputFile)"
+                Lines="$([System.IO.File]::ReadAllText($(InputFile)).
+                Replace('public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser {','public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser_ {').
+                Replace('if (!object.Equals(Parser, other.Parser)) return false;','if (!object.Equals(Parser_, other.Parser_)) return false;').
+                Replace('output.WriteMessage(Parser);', 'output.WriteMessage(Parser_);').
+                Replace('size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser);', 'size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser_);').
+                Replace('Parser = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();', 'Parser_ = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();').
+                Replace('Parser.MergeFrom(other.Parser);', 'Parser_.MergeFrom(other.Parser_);').
+                Replace('input.ReadMessage(Parser);', 'input.ReadMessage(Parser_);'))"
+                Overwrite="true"
+                Encoding="Unicode"/>
     </Target>
     <Target Name="Replace2" AfterTargets="Protobuf_AfterCompile">
         <PropertyGroup>
             <InputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Parsers.cs</InputFile>
             <OutputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Parsers.cs</OutputFile>
         </PropertyGroup>
-        <WriteLinesToFile File="$(OutputFile)" Lines="$([System.IO.File]::ReadAllText($(InputFile)).&#xD;&#xA;                Replace(', global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser.Parser,',', global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser.Parser_,').&#xD;&#xA;                Replace('public static pb::MessageParser&lt;Parser&gt; Parser {','public static pb::MessageParser&lt;Parser&gt; Parser_ {'))" Overwrite="true" Encoding="Unicode" />
+        <WriteLinesToFile
+                File="$(OutputFile)"
+                Lines="$([System.IO.File]::ReadAllText($(InputFile)).
+                Replace(', global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser.Parser,',', global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser.Parser_,').
+                Replace('public static pb::MessageParser&lt;Parser&gt; Parser {','public static pb::MessageParser&lt;Parser&gt; Parser_ {'))"
+                Overwrite="true"
+                Encoding="Unicode"/>
     </Target>
     <Target Name="Replace3" AfterTargets="Protobuf_AfterCompile">
         <PropertyGroup>
             <InputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Yds.cs</InputFile>
             <OutputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Yds.cs</OutputFile>
         </PropertyGroup>
-        <WriteLinesToFile File="$(OutputFile)" Lines="$([System.IO.File]::ReadAllText($(InputFile)).&#xD;&#xA;                Replace('public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser {','public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser_ {').&#xD;&#xA;                Replace('if (!object.Equals(Parser, other.Parser)) return false;','if (!object.Equals(Parser_, other.Parser_)) return false;').&#xD;&#xA;                Replace('output.WriteMessage(Parser);', 'output.WriteMessage(Parser_);').&#xD;&#xA;                Replace('size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser);', 'size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser_);').&#xD;&#xA;                Replace('Parser = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();', 'Parser_ = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();').&#xD;&#xA;                Replace('Parser.MergeFrom(other.Parser);', 'Parser_.MergeFrom(other.Parser_);').&#xD;&#xA;                Replace('input.ReadMessage(Parser);', 'input.ReadMessage(Parser_);'))" Overwrite="true" Encoding="Unicode" />
+        <WriteLinesToFile
+                File="$(OutputFile)"
+                Lines="$([System.IO.File]::ReadAllText($(InputFile)).
+                Replace('public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser {','public global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser Parser_ {').
+                Replace('if (!object.Equals(Parser, other.Parser)) return false;','if (!object.Equals(Parser_, other.Parser_)) return false;').
+                Replace('output.WriteMessage(Parser);', 'output.WriteMessage(Parser_);').
+                Replace('size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser);', 'size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parser_);').
+                Replace('Parser = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();', 'Parser_ = new global::Yandex.Cloud.Datatransfer.V1.EndPoint.Parser();').
+                Replace('Parser.MergeFrom(other.Parser);', 'Parser_.MergeFrom(other.Parser_);').
+                Replace('input.ReadMessage(Parser);', 'input.ReadMessage(Parser_);'))"
+                Overwrite="true"
+                Encoding="Unicode"/>
     </Target>
 </Project>

@@ -53,13 +53,12 @@ namespace Yandex.Cloud
             );
         }
 
-        public string GetEndpointAddress(string endpointId)
+        public string GetEndpointAddress(string endpoint)
         {
             var client = new ApiEndpointService.ApiEndpointServiceClient(_apiEndpointChannel);
 
-            var req = new GetApiEndpointRequest {ApiEndpointId = endpointId};
-            var endpoint = client.Get(req);
-            return endpoint.Address;
+            var req = new GetApiEndpointRequest {ApiEndpointId = endpoint};
+            return client.Get(req).Address;
         }
 
         internal ICredentialsProvider CredentialsProvider => _credentialsProvider;
