@@ -1,6 +1,7 @@
 .idea
 dotnet.sln.DotSettings.user
 dist
+artifacts
 **/bin
 **/obj
 Yandex.Cloud.Protos/google

@@ -16,7 +16,7 @@ namespace Yandex.Cloud
             this.service = service;
         }
 
-        protected Channel GetChannel(string serviceOverride = null)
+        protected ChannelBase GetChannel(string serviceOverride = null)
         {
             return sdk.GetChannel(serviceOverride ?? service);
         }
@@ -28,24 +28,30 @@ namespace Yandex.Cloud
 
         class CachingSdk : Sdk
         {
-            private readonly Dictionary<string, Channel> _channels = new Dictionary<string, Channel>();
+            private readonly Dictionary<string, ChannelBase> _channels = new Dictionary<string, ChannelBase>();
 
             public CachingSdk(ICredentialsProvider credentialsProvider) : base(credentialsProvider)
             {
             }
 
-            public Channel GetChannel(string service)
+            public ChannelBase GetChannel(string service)
             {
                 var endpointAddress = base.GetEndpointAddress(service);
 
+                ChannelBase serviceChannel;
                 lock (_channels)
                 {
-                    if (_channels.TryGetValue(service, out var serviceChannel) && serviceChannel.Target == endpointAddress)
+                    if (_channels.TryGetValue(service, out serviceChannel) &&
+                        serviceChannel.Target == endpointAddress)
                     {
                         return serviceChannel;
                     }
+                }
 
-                    serviceChannel = new Channel(endpointAddress, base.GetCredentials());
+                serviceChannel = GetChannel(endpointAddress, base.GetCredentials());
+                
+                lock (_channels)
+                {
                     _channels[service] = serviceChannel;
 
                     return serviceChannel;

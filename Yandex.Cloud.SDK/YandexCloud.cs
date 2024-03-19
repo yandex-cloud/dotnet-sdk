@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿
+using System.Threading.Tasks;
 using Grpc.Core;
+using Grpc.Net.Client;
 using Yandex.Cloud.Credentials;
 using Yandex.Cloud.Endpoint;
 using Yandex.Cloud.Generated;
@@ -10,19 +12,27 @@ namespace Yandex.Cloud
     {
         private readonly ChannelCredentials _channelCredentials = new SslCredentials();
         private readonly ICredentialsProvider _credentialsProvider;
-        private readonly Channel _apiEndpointChannel;
+        private readonly ChannelBase _apiEndpointChannel;
         public readonly Services Services;
 
 
         public Sdk(ICredentialsProvider credentialsProvider)
         {
             _credentialsProvider = credentialsProvider;
-            _apiEndpointChannel = new Channel("api.cloud.yandex.net:443", _channelCredentials);
+            _apiEndpointChannel = GetChannel("api.cloud.yandex.net:443", _channelCredentials);
             Services = new Services(this);
         }
 
         public Sdk() : this(new MetadataCredentialsProvider())
         {
+        }
+
+        protected internal static ChannelBase GetChannel(string endpoint, ChannelCredentials credentials)
+        {
+            return GrpcChannel.ForAddress($"https://{endpoint}", new GrpcChannelOptions
+            {
+                Credentials = credentials
+            });
         }
 
         public ChannelCredentials GetCredentials()

@@ -8,27 +8,29 @@
         <Title>Yandex.Cloud Protocol Buffer Library</Title>
         <Summary>Auto-generated library from Protocol Buffer descriptors.</Summary>
         <Description>See project site for more info.</Description>
-        <PackageVersion>1.3.0</PackageVersion>
+        <PackageVersion>1.4.0-pre1</PackageVersion>
         <Authors>Yandex.Cloud</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>
         <PackageReleaseNotes>Yandex Cloud SDK</PackageReleaseNotes>
-        <Copyright>Copyright 2023, YANDEX LLC.</Copyright>
+        <Copyright>Copyright 2024, YANDEX LLC.</Copyright>
         <PackageTags>yandex-cloud sdk proto proto3 protobuf grpc</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Google.Protobuf" Version="3.19.1" />
-        <PackageReference Include="Grpc" Version="2.41.1" />
-        <PackageReference Include="Grpc.Tools" Version="2.41.1" PrivateAssets="all" />
-        <PackageReference Include="Contrib.Grpc.Core.M1" Version="2.41.0" />
+        <PackageReference Include="Google.Protobuf" Version="3.26.0" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.61.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.62.0">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <Protobuf Include="../cloudapi/third_party/googleapis/google/**/*.proto" ProtoRoot="../cloudapi/third_party/googleapis" />
         <Protobuf Include="../cloudapi/yandex/**/*.proto" ProtoRoot="../cloudapi" AdditionalImportDirs="../cloudapi/third_party/googleapis" GrpcServices="Client" />
     </ItemGroup>
-    
-    
+
+
     <Target Name="Replace1" AfterTargets="Protobuf_AfterCompile">
         <PropertyGroup>
             <InputFile>$(IntermediateOutputPath)/yandex/cloud/datatransfer/v1/endpoint/Kafka.cs</InputFile>
