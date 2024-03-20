@@ -4,6 +4,7 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Yandex.Cloud.Resourcemanager.V1;
 using Yandex.Cloud;
 using Yandex.Cloud.Credentials;
-using Yandex.Cloud.Operation;
 using Yandex.Cloud.Storage.V1;
 
 namespace Example
@@ -37,13 +35,14 @@ namespace Example
         {
             var cloudsResponse = sdk.Services.Resourcemanager.CloudService.List(new ListCloudsRequest());
 
-            string cloudId = string.Empty;
+            var cloudId = string.Empty;
+            Console.WriteLine("Clouds:");
             foreach (var c in cloudsResponse.Clouds)
             {
                 cloudId = c.Id;
                 Console.Out.WriteLine($"* {c.Name} ({c.Id})");
             }
-
+            
             var folderResponse = sdk.Services.Resourcemanager.FolderService.List(new ListFoldersRequest { CloudId = cloudId });            
             foreach (var folder in folderResponse.Folders)
             {
@@ -53,27 +52,23 @@ namespace Example
             return null;
         }
 
-        public static async Task UseStorage(Sdk sdk, Folder folder)
+        private static async Task UseStorage(Sdk sdk, Folder folder)
         {
             var bucketName = $"sdk-example-bucket-{DateTime.Now:yyMMddHHmmss}";
             var operation = await sdk.Services.Storage.BucketService
                 .CreateAsync(new CreateBucketRequest { FolderId = folder.Id, Name = bucketName }).ResponseAsync;
 
-            var func = () => sdk.Services.Operation.OperationService.Get(new GetOperationRequest
-                { OperationId = operation.Id }).Done;
-
-            if (!SpinWait.SpinUntil(func, TimeSpan.FromSeconds(10)))
-            {
-                return;
-            }
+            await sdk.WaitForCompletionAsync(operation);
             
             var listResponse = await sdk.Services.Storage.BucketService.ListAsync(new ListBucketsRequest{FolderId = folder.Id}).ResponseAsync;
+            
+            Console.WriteLine("Buckets:");
             foreach (var bucket in listResponse.Buckets)
             {
                 Console.WriteLine(bucket.Name);
             }
             
-            await sdk.Services.Storage.BucketService.DeleteAsync(new DeleteBucketRequest { Name = bucketName }).ResponseAsync;
+            await sdk.Services.Storage.BucketService.DeleteAsync(new DeleteBucketRequest { Name = bucketName }).WaitForCompletionAsync(sdk);
         }
     }
 }
