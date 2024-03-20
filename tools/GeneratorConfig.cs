@@ -64,6 +64,7 @@ namespace tools
             {"Services_Serverless_Functions", new EndpointConfig("serverless-functions")},
             {"Services_Serverless_Mdbproxy", new EndpointConfig("mdbproxy")},
             {"Services_Serverless_Triggers", new EndpointConfig("serverless-triggers")},
+            {"Services_Storage", new EndpointConfig("storage-api")},
             {"Services_Vpc", new EndpointConfig("vpc")},
             {"Services_Ydb", new EndpointConfig("ydb")},
             {

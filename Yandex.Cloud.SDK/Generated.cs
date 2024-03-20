@@ -179,9 +179,8 @@ namespace Yandex.Cloud.Generated
     {
         
         public Services_Storage(Yandex.Cloud.Sdk sdk) : 
-                base(sdk, "unknown")
+                base(sdk, "storage-api")
         {
-            throw new System.Exception("service Services_Storage is not supported at this moment");
         }
         
         public virtual Yandex.Cloud.Storage.V1.BucketService.BucketServiceClient BucketService

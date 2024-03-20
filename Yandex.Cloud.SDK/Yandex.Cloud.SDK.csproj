@@ -15,6 +15,7 @@
         <PackageReleaseNotes>Yandex Cloud SDK</PackageReleaseNotes>
         <Copyright>Copyright 2024, YANDEX LLC.</Copyright>
         <PackageTags>yandex-cloud sdk proto proto3 protobuf grpc</PackageTags>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
