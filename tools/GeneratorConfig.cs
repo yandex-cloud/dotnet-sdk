@@ -43,6 +43,7 @@ namespace tools
                 })
             },
             {"Services_Marketplace", new EndpointConfig("marketplace")},
+            {"Services_Marketplace_Licensemanager", new EndpointConfig("marketplace")},
             {"Services_Marketplace_Metering", new EndpointConfig("marketplace")},
             {"Services_Mdb", new EndpointConfig("mdb")},
             {"Services_Mdb_Clickhouse", new EndpointConfig("managed-clickhouse")},
