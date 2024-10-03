@@ -1,7 +1,6 @@
-namespace Yandex.Cloud.Credentials
+namespace Yandex.Cloud.Credentials;
+
+public interface ICredentialsProvider
 {
-    public interface ICredentialsProvider
-    {
-        string GetToken();
-    }
+    string GetToken();
 }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 using Yandex.Cloud.Resourcemanager.V1;
 using Yandex.Cloud;
 using Yandex.Cloud.Credentials;
@@ -11,14 +14,7 @@ namespace Example
     {
         public static async Task Main(string[] args)
         {
-            var token = Environment.GetEnvironmentVariable("YC_TOKEN");
-            if (token == null)
-            {
-                Console.WriteLine("YC_TOKEN must be set to run example");
-                Environment.Exit(1);
-            }
-            
-            var credProvider = new OAuthCredentialsProvider(token);
+            var credProvider = CreateCredentialsProvider();
             var sdk = new Sdk(credProvider);
 
             var folder = UseResourceManager(sdk);
@@ -29,6 +25,37 @@ namespace Example
             }
             
             await UseStorage(sdk, folder);
+        }
+
+        private static ICredentialsProvider CreateCredentialsProvider()
+        {
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length == 4) // TODO: how to pass multiple params?
+            {
+                var path = args[1];
+                var keyId = args[2];
+                var saId = args[3];
+                
+                var pem = File.ReadAllText(path);
+                
+                var rsa = RSA.Create();
+                rsa.ImportFromPem(pem);
+
+                var key = new RsaSecurityKey(rsa);
+                key.KeyId = keyId;
+                
+                return new IamJwtCredentialsProvider(key, saId);
+            }
+            
+            var token = Environment.GetEnvironmentVariable("YC_TOKEN");
+            if (token == null)
+            {
+                Console.WriteLine("YC_TOKEN must be set to run example");
+                Environment.Exit(1);
+            }
+            
+            var credProvider = new OAuthCredentialsProvider(token);
+            return credProvider;
         }
 
         private static Folder UseResourceManager(Sdk sdk)

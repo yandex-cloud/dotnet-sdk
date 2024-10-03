@@ -20,7 +20,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-        <PackageReference Include="System.Text.Json" Version="4.7.2" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.0" />
+        <PackageReference Include="System.Text.Json" Version="8.0.4" />
     </ItemGroup>
 
     <ItemGroup>

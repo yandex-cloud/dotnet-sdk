@@ -1163,8 +1163,9 @@ namespace Yandex.Cloud.Generated
     {
         
         public Services_Marketplace_Licensemanager(Yandex.Cloud.Sdk sdk) : 
-                base(sdk, "marketplace")
+                base(sdk, "unknown")
         {
+            throw new System.Exception("service Services_Marketplace_Licensemanager is not supported at this moment");
         }
         
         public virtual Yandex.Cloud.Marketplace.Licensemanager.V1.InstanceService.InstanceServiceClient InstanceService
