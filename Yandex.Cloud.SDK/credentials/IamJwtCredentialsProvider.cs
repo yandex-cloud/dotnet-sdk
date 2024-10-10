@@ -9,7 +9,10 @@ namespace Yandex.Cloud.Credentials;
 
 public class IamJwtCredentialsProvider : ICredentialsProvider
 {
-    private RsaSecurityKey _key;
+    private readonly RsaSecurityKey _key;
+    
+    private string _token;
+    private DateTime _tokenExpiry;
 
     public IamJwtCredentialsProvider(RsaSecurityKey key, string serviceAccountId)
     {
@@ -21,13 +24,18 @@ public class IamJwtCredentialsProvider : ICredentialsProvider
 
     public string GetToken()
     {
-        // TODO: reuse non-expired token
-        var response = TokenService().Create(new CreateIamTokenRequest
+        if (string.IsNullOrEmpty(_token) || DateTime.UtcNow >= _tokenExpiry)
         {
-            Jwt = CreateJwtToken()
-        });
+            var response = TokenService().Create(new CreateIamTokenRequest
+            {
+                Jwt = CreateJwtToken()
+            });
+            
+            _token = response.IamToken;
+            _tokenExpiry = response.ExpiresAt.ToDateTime().AddMinutes(-5); // next refresh in 5 minutes before token expiration
+        }
 
-        return response.IamToken;
+        return _token;
     }
     
     private IamTokenService.IamTokenServiceClient TokenService()
