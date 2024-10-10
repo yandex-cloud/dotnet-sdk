@@ -8,7 +8,7 @@
         <Title>Yandex.Cloud SDK</Title>
         <Summary>Software Development Kit designed to ease interaction with Yandex.Cloud API.</Summary>
         <Description>See project site for more info.</Description>
-        <PackageVersion>1.4.0-pre1</PackageVersion>
+        <PackageVersion>1.4.1</PackageVersion>
         <Authors>Yandex.Cloud</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/yandex-cloud/dotnet-sdk/</PackageProjectUrl>
