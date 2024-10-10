@@ -1,11 +1,16 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Security.Cryptography;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using Yandex.Cloud.Resourcemanager.V1;
 using Yandex.Cloud;
 using Yandex.Cloud.Credentials;
+using Yandex.Cloud.Iam.V1;
+using Yandex.Cloud.Lockbox.V1;
 using Yandex.Cloud.Storage.V1;
 
 namespace Example
@@ -14,48 +19,83 @@ namespace Example
     {
         public static async Task Main(string[] args)
         {
-            var credProvider = CreateCredentialsProvider();
-            var sdk = new Sdk(credProvider);
+            await WithOAuthCredentials(async credProvider =>
+                {
+                    var sdk = new Sdk(credProvider);
 
-            var folder = UseResourceManager(sdk);
-            if (folder == null)
+                    var folder = UseResourceManager(sdk);
+                    if (folder == null)
+                    {
+                        Console.WriteLine("No folder found");
+                        return;
+                    }
+
+                    await UseStorage(sdk, folder);
+                });
+
+            await WithIamJwtCredentials(async credProvider =>
             {
-                Console.WriteLine("No folder found");
-                return;
-            }
-            
-            await UseStorage(sdk, folder);
+                var sdk = new Sdk(credProvider);
+                var serviceAccount = await sdk.Services.Iam.ServiceAccountService.GetAsync(new GetServiceAccountRequest
+                {
+                    ServiceAccountId = credProvider.ServiceAccountId
+                });
+                
+                var listResponse = await sdk.Services.Lockbox.SecretService.ListAsync(new ListSecretsRequest
+                {
+                    FolderId = serviceAccount.FolderId
+                });
+
+                if (listResponse.Secrets.Count == 0)
+                {
+                    Console.WriteLine("No secrets found");
+                }
+
+                foreach (var secret in listResponse.Secrets)
+                {
+                    Console.WriteLine(secret.Id);
+                }
+            });
         }
-
-        private static ICredentialsProvider CreateCredentialsProvider()
+        
+        private static async Task WithOAuthCredentials(Func<ICredentialsProvider, Task> action)
         {
-            var args = Environment.GetCommandLineArgs();
-            if (args.Length == 4) // TODO: how to pass multiple params?
-            {
-                var path = args[1];
-                var keyId = args[2];
-                var saId = args[3];
-                
-                var pem = File.ReadAllText(path);
-                
-                var rsa = RSA.Create();
-                rsa.ImportFromPem(pem);
-
-                var key = new RsaSecurityKey(rsa);
-                key.KeyId = keyId;
-                
-                return new IamJwtCredentialsProvider(key, saId);
-            }
-            
             var token = Environment.GetEnvironmentVariable("YC_TOKEN");
             if (token == null)
             {
                 Console.WriteLine("YC_TOKEN must be set to run example");
-                Environment.Exit(1);
+                return;
             }
             
             var credProvider = new OAuthCredentialsProvider(token);
-            return credProvider;
+            await action(credProvider);
+        }
+
+        private static async Task WithIamJwtCredentials(Func<IamJwtCredentialsProvider, Task> action)
+        {
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length < 3) return;
+
+            var cmd = args[1];
+            if (string.Compare(cmd, "json", StringComparison.OrdinalIgnoreCase) != 0)
+            {
+                Console.WriteLine("No json file specified");
+                return;
+            }
+            var path = args[2];
+            var json = await File.ReadAllTextAsync(path);
+            var container = JsonSerializer.Deserialize<JsonContainer>(json);
+        
+            var rsa = RSA.Create();
+            rsa.ImportFromPem(container.PrivateKey);
+                
+            var key = new RsaSecurityKey(rsa)
+            {
+                KeyId = container.Id
+            };
+            
+            var credProvider = new IamJwtCredentialsProvider(key, container.ServiceAccountId);
+            await action(credProvider);
         }
 
         private static Folder UseResourceManager(Sdk sdk)
@@ -97,5 +137,29 @@ namespace Example
             
             await sdk.Services.Storage.BucketService.DeleteAsync(new DeleteBucketRequest { Name = bucketName }).WaitForCompletionAsync(sdk);
         }
+    }
+    
+    class JsonContainer
+    {
+        [JsonRequired]
+        [JsonPropertyName("id")]
+        public string Id { get; init; }
+        
+        [JsonRequired]
+        [JsonPropertyName("service_account_id")]
+        public string ServiceAccountId {get; init;}
+        
+        [JsonPropertyName("created_at")]
+        public DateTime CreatedAt { get; init; }
+        
+        [JsonPropertyName("key_algorithm")]
+        public string KeyAlgorithm { get; init; }
+        
+        [JsonPropertyName("public_key")]
+        public string PublicKey { get; init; }
+        
+        [JsonRequired]
+        [JsonPropertyName("private_key")]
+        public string PrivateKey { get; init; }
     }
 }

@@ -10,13 +10,14 @@ namespace Yandex.Cloud.Credentials;
 public class IamJwtCredentialsProvider : ICredentialsProvider
 {
     private RsaSecurityKey _key;
-    private string _serviceAccountId;
 
     public IamJwtCredentialsProvider(RsaSecurityKey key, string serviceAccountId)
     {
         _key = key ?? throw new ArgumentNullException(nameof(key));
-        _serviceAccountId = serviceAccountId;
+        ServiceAccountId = serviceAccountId;
     }
+    
+    public string ServiceAccountId { get; }
 
     public string GetToken()
     {
@@ -44,7 +45,7 @@ public class IamJwtCredentialsProvider : ICredentialsProvider
         var now = DateTime.UtcNow;
         return handler.CreateEncodedJwt(new SecurityTokenDescriptor
         {
-            Issuer = _serviceAccountId,
+            Issuer = ServiceAccountId,
             Audience = "https://iam.api.cloud.yandex.net/iam/v1/tokens",
             IssuedAt = now,
             NotBefore = now,
