@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using Grpc.Core;
 using Grpc.Net.Client;
@@ -10,17 +11,19 @@ namespace Yandex.Cloud.Credentials;
 public class IamJwtCredentialsProvider : ICredentialsProvider
 {
     private readonly RsaSecurityKey _key;
-    
+
     private string _token;
     private DateTime _tokenExpiry;
 
-    public IamJwtCredentialsProvider(RsaSecurityKey key, string serviceAccountId)
+    public IamJwtCredentialsProvider(RsaSecurityKey key, string serviceAccountId, string keyId)
     {
         _key = key ?? throw new ArgumentNullException(nameof(key));
         ServiceAccountId = serviceAccountId;
+        KeyId = keyId;
     }
-    
+
     public string ServiceAccountId { get; }
+    public string KeyId { get; }
 
     public string GetToken()
     {
@@ -30,14 +33,14 @@ public class IamJwtCredentialsProvider : ICredentialsProvider
             {
                 Jwt = CreateJwtToken()
             });
-            
+
             _token = response.IamToken;
             _tokenExpiry = response.ExpiresAt.ToDateTime().AddMinutes(-5); // next refresh in 5 minutes before token expiration
         }
 
         return _token;
     }
-    
+
     private IamTokenService.IamTokenServiceClient TokenService()
     {
         var channel = GrpcChannel.ForAddress("https://iam.api.cloud.yandex.net:443", new GrpcChannelOptions
@@ -53,6 +56,7 @@ public class IamJwtCredentialsProvider : ICredentialsProvider
         var now = DateTime.UtcNow;
         return handler.CreateEncodedJwt(new SecurityTokenDescriptor
         {
+            AdditionalInnerHeaderClaims = new Dictionary<string, object> { { "kid", KeyId } },
             Issuer = ServiceAccountId,
             Audience = "https://iam.api.cloud.yandex.net/iam/v1/tokens",
             IssuedAt = now,
