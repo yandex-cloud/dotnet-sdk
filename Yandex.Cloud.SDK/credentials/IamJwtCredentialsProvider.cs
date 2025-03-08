@@ -17,6 +17,10 @@ public class IamJwtCredentialsProvider : ICredentialsProvider
     public IamJwtCredentialsProvider(RsaSecurityKey key, string serviceAccountId)
     {
         _key = key ?? throw new ArgumentNullException(nameof(key));
+        if (string.IsNullOrEmpty(_key.KeyId))
+        {
+            throw new ArgumentException("Key must have a KeyId");
+        }
         ServiceAccountId = serviceAccountId;
     }
     
