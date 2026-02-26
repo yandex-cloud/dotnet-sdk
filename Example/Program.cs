@@ -19,7 +19,7 @@ namespace Example
     {
         public static async Task Main(string[] args)
         {
-            await WithOAuthCredentials(async credProvider =>
+            await WithIamTokenCredentials(async credProvider =>
                 {
                     var sdk = new Sdk(credProvider);
 
@@ -57,17 +57,17 @@ namespace Example
                 }
             });
         }
-        
-        private static async Task WithOAuthCredentials(Func<ICredentialsProvider, Task> action)
+
+        private static async Task WithIamTokenCredentials(Func<ICredentialsProvider, Task> action)
         {
-            var token = Environment.GetEnvironmentVariable("YC_TOKEN");
+            var token = Environment.GetEnvironmentVariable("YC_IAM_TOKEN");
             if (token == null)
             {
-                Console.WriteLine("YC_TOKEN must be set to run example");
+                Console.WriteLine("YC_IAM_TOKEN must be set to run example");
                 return;
             }
             
-            var credProvider = new OAuthCredentialsProvider(token);
+            var credProvider = new IamTokenCredentialsProvider(token);
             await action(credProvider);
         }
 

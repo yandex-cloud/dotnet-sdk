@@ -5,6 +5,7 @@ using Yandex.Cloud.Iam.V1;
 
 namespace Yandex.Cloud.Credentials
 {
+    [Obsolete("Deprecated: Please consider to use other credential provider. By the end of 2026, the use of oauth tokens in the Yandex cloud will be discontinued.")]
     public class OAuthCredentialsProvider : ICredentialsProvider
     {
         private readonly IamTokenService.IamTokenServiceClient _tokenService;
