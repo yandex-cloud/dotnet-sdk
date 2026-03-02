@@ -22,7 +22,7 @@ running in Yandex.Cloud) and Service Account Keys
 using Yandex.Cloud;
 using Yandex.Cloud.Credentials;
 
-var sdk = new Sdk(new IamTokenCredentialsProvider("AQAD-....."));
+var sdk = new Sdk(new IamTokenCredentialsProvider("t1.9eu..."));
 ```
 
 ### Metadata Service
