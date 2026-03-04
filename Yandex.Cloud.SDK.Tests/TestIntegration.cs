@@ -13,13 +13,13 @@ namespace Yandex.Cloud.SDK.Tests
         [SetUp]
         public void SetUp()
         {
-            var token = Environment.GetEnvironmentVariable("YC_TOKEN");
+            var token = Environment.GetEnvironmentVariable("YC_IAM_TOKEN");
             if (token == null)
             {
-                Assert.Inconclusive("YC_TOKEN must be set to run integration tests");
+                Assert.Inconclusive("YC_IAM_TOKEN must be set to run integration tests");
             }
 
-            _sdk = new Sdk(new OAuthCredentialsProvider(token));
+            _sdk = new Sdk(new IamTokenCredentialsProvider(token));
         }
 
         [Test]

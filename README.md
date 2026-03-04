@@ -12,17 +12,17 @@ Installation:
 
 ## Getting started
 
-There are several options for authorization your requests - OAuth Token,
+There are several options for authorization your requests - Plain Iam Token,
 Metadata Service (if you're executing code inside VMs or Functions
 running in Yandex.Cloud) and Service Account Keys
 
-### OAuth Token
+### Plain Iam Token
 
 ```csharp
 using Yandex.Cloud;
 using Yandex.Cloud.Credentials;
 
-var sdk = new Sdk(new OAuthCredentialsProvider("AQAD-....."));
+var sdk = new Sdk(new IamTokenCredentialsProvider("t1.9eu..."));
 ```
 
 ### Metadata Service
